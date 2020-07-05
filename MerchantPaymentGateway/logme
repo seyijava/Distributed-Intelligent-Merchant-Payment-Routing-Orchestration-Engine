@@ -1,0 +1,10 @@
+/*merchant := &domain.Merchant{Name: "PayGate",MerchantAccount: "12444"}
+	card := &domain.Card{CardNumber: "393939",ExpiryDate: "05/2023",CardToken: "8383838",IssuingBankCountry: "NGN",CVC:"890"}
+	billingAddress := &domain.BillingAddress{Address: "37 Majaro Street Onike Street",PostalCode: "ABC3838",Country:"NGN"}
+	paymentRequest := &domain.PaymentRequest{Card: card,BillingAddress: billingAddress,Currency: "USD",Amount: 200.00,MerchantPaymentReference: "MT-1234",PaymentDescription: "PAYMENT"}
+	merchantRequest := domain.MerchantPaymentRequest{PaymentRequest: paymentRequest,Merchant:merchant}
+	payload,_ :=json.Marshal(merchantRequest)
+
+	var prettyJSON bytes.Buffer
+	json.Indent(&prettyJSON, payload, "", "\t")
+	fmt.Println(string(prettyJSON.Bytes()))*/

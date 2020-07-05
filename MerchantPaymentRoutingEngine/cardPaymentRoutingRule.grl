@@ -1,0 +1,32 @@
+rule RoutePaymentByCardTypeRule1 "When CardType is VISA." salience  1 {
+    when
+        CardInfo.CardType  == "VISA"
+    then
+        CardInfo.PSPChannel = "StripeChannelTopic";
+         Retract("RoutePaymentByCardTypeRule1");
+
+}
+rule RoutePaymentByCardTypeRule2 "When CardType is Master." salience  1 {
+    when
+        CardInfo.CardType  == "MasterCard"
+    then
+        CardInfo.PSPChannel = "StripeChannelTopic";
+         Retract("RoutePaymentByCardTypeRule2");
+}
+
+rule RoutePaymentByIssueBankCountry1 "When Issuing Bank Country is Canada." salience  1 {
+    when
+        CardInfo.IssueCountry  == "Canada"
+    then
+        CardInfo.PSPChannel = "StripeChannelTopic";
+         Retract("RoutePaymentByIssueBankCountry1");
+}
+
+rule RoutePaymentByIssueBankCountry2 "When Issuing Bank Country is Nigeria." salience  10  {
+    when
+        CardInfo.IssueCountry  == "Nigeria"
+    then
+        CardInfo.PSPChannel = "StripeChannelTopic";
+         Retract("RoutePaymentByIssueBankCountry2");
+}
+

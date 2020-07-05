@@ -1,0 +1,109 @@
+
+
+
+Many merchants add multiple aggregators, acquiring banks, wallets and other payment service providers. Merchant can have either integration with aggregators only or have combination of integration with aggregators and direct integration with banks, wallets.
+Adding multiple payment service providers is a good strategy as it allows merchant to,
+Increase payment coverage (more payment methods, banks for users)
+Avail better commercials on payment methods from different payment providers
+Avail offers such as cash backs and discounts that boosts sales
+Most importantly, merchant can reduce dependency on single payment provider. As they say, “don’t put all your eggs in single basket”
+When you add multiple aggregators/bank PGs, they bring along some challenges w.r.t. payment page design, card vault strategy and transaction routing. We have covered first two points, so let’s jump to ‘transaction routing’
+How do you route the transactions
+Before you set any routing logic, decide on what is the objective you wish to achieve
+Backup / failover mechanism
+Better conversion
+Optimise commercials by routing transaction through cheapest payment service provider
+Fulfilling volume commitment (To get better rates you might committed volume to payment service provider)
+Some of the possible routing logics:
+I have seen various types of routing logics set by merchants. Some have clear purposes and some are random… Here is the list of possible logics (practical and theoretical)
+a. Business Line Based
+Merchant can configure different aggregators for different internal business lines or product lines.
+Example: All B2C transactions go through one aggregator and B2B transactions processed through another aggregator.
+b. Channel based
+Merchant can have channel wise routing for website, m-Site, mobile App
+Example: All website transaction routed to Aggregator A but all mobile App transactions to Aggregator B.
+c. Round Robin method:
+Send one transaction to aggregator A, next one to B, next to C so on. Logic doesn’t serve any purpose except merchant wants to keep every aggregator happy by giving piece of action
+d. Keep ‘passing’ until fails
+Send transaction to aggregator A till one transaction fails and then start sending transaction to aggregator B till one transaction fails and then bring back A again and so on. This is crude way of performance based routing logic
+e. Primary and Retry
+Aggregator A acts as primary for all transactions and backup aggregator B is called in only when user of failed transaction try to make another payment.
+f. Performance Based
+Measure the performance of aggregators and acquiring banks that are integrated and route the transaction through gateway who is performing better
+Example: Start with 50:50 volume and based on performance make it 90:10 (keep 10% volume so you can measure performance of other aggregator). If aggregator A’s performance drops then start routing volumes to B till 10:90 split.
+g. Payment Method Based:
+Merchant can use different aggregators to process different payment methods. It can be at various levels (broad or granular)
+Send All cards to Aggregator A and net-banking to aggregator B
+In net-banking, do bank level routing
+In Cards, do granular level routing at card type (Credit, debit), card scheme (Visa, MasterCard, RuPay) and issuer level
+
+Granular level routing possibility in cards
+Reason: Different aggregator + acquiring banks tend to provide better success rate for particular payment mode. (E.g. Aggregator A may be good in RuPay but other aggregator process other cards better). So set the routing accordingly and keep trying different combinations until get optimal success rate
+h. Commercials Based:
+It is possible that one aggregator can provide better rates on few payment methods compared to others. Also, it is possible to get differential pricing for On-Us and Off-Us transactions from acquiring banks/aggregators.
+
+Illustration for Example 1 and Example 2 (Explained below)
+Example 1: Let us say merchant has good commercials on net-banking from aggregator A and good rates on credit cards from aggregator B. Then route the transactions accordingly
+Example 2: On-Us Off transaction: Aggregator/acquiring banks can provide differential rates for On-US off transaction so route card transaction accordingly
+i. Volume Based
+Transaction count based: Volume is split among aggregators based on transaction count (assuming ticket size is same). Typically works well if 50:50 split between two aggregators but not ideal for complicated volume split cases.
+Example: If need to send 20% volume to A, 30% to B and 50% C then 2 transactions to A, next 3 to B and next 5 to C and then start over again. But requires additional logic to remember last aggregator used and its count.
+Timer based: Build a timer based logic that can use current time stamp. As this model is built on probabilities so works better (i.e. split is more accurate) if transactions are continuous and not sporadic. E.g. Works better for Swiggy but might not for Urban Ladder
+Example: 5% of volume to A, 25% to B and 70% to C. In that case, take current timestamp and do mod 100 and if that number is less than 5 then send to A, if number is less than 30 then send to B and rest will go through C.
+Payment method wise split: Merchant knows the volume across various payment methods and split payment methods such a way to fulfil volume commitment.
+Example: Visa Cards and few net-banking constitute 50% of volume. So if volume is to split 50:50 between to aggregators then route all Visa Cards and selected bank through aggregator A and rest through B.
+Important Note: Irrespective of what routing logic you develop, make sure for every payment method you configure a primary and secondary aggregator/acquiring bank so you have fail safe mechanism in place
+Performance based logics are based on hypothesis that as ‘n-1’ transaction was successful on aggregator so transaction ’n’ will be successful. Think about it…
+Routing logic is not a sprint but a marathon, one has to keep fine tuning with various combinations until you achieve the objective and that also consistently.
+
+
+What Is Intelligent Payment Routing?
+
+With our flexible processing engine and our extensive Payment Analytics, we are able to route transactions to the best acquiring bank to ensure maximum payment success. Intelligent Payment Routing is used to ensure that transactions go to the acquiring bank that is most likely to approve a transaction – as well as support “failover transactions” so that if one acquiring bank declines a transaction another might approve it. In doing so, global merchants can accept shoppers from anywhere and increase their percentage of approved transactions.
+
+ 
+
+How Can It Help Me?
+
+First, we board you to the right acquiring banks based on characteristics about your company. These include your location, your product or service, and which regions of the world you are selling into. Then, when a shopper comes to your site and chooses “buy now”, we route the transaction to the best acquiring bank using the merchant location, shopper region, currency and card type as key factors to optimize payment approval. If the transaction fails, it is automatically routed to a different one in real-time. If the decline is due to outdated card information, we would send the card for an update (via our Account Updater feature) and retry the transaction when we receive updated information. All of these retries happen in real-time and are invisible to the shopper.
+
+ 
+
+What Else Can I Do?
+
+Additional intelligence about your transactions is gathered using our Payment Analytics. These Analytics help us identify areas where you can further improve your payment success. For example: Is your checkout page set up correctly to capture the shopper’s currency? Are your price points and subscription plans influencing your conversions?
+
+ 
+
+All businesses are looking to increase their payment conversions and often struggle for the best ways to do so. Intelligent payment routing is one way we can help increase your payment success rates. Don’t miss out on the potential 40% uplift that intelligent payment routing, and simple things identified by our Payment Analytics can change for your business. Want more about intelligent payment routing? Simple, talk to one of our conversion consultants:
+
+
+Many factors are needed to make a shopper’s buying process frictionless. One factor many don’t think of is what goes on “behind the scenes” to determine whether a shopper’s payment will be successful or be declined. The key lies in Intelligent Payment Routing, which means sending the transaction to the acquiring bank (which is a bank that processes transactions on behalf of a merchant) where it is most likely to succeed. Traditional payment providers are either connected to one acquiring bank in a region or require merchants to obtain their own acquiring merchant account in each region. By connecting our merchants to a global network of acquirers and providing the merchant accounts necessary, the All-in-One Payment Platform is designed to get you the best payment conversion rates using intelligent payment routing.
+
+
+
+The global digital payment market size was valued at USD 3.53 trillion in 2018 and is projected to reach USD 19.89 trillion by 2026 in ... 
+
+In any payment system, routing can be thought of as the nervous system in the payments ecosystem, sending transactions to acquirers and Payment Service Providers (PSPs) for processing and approval so payments can be completed. It's one of those critical ‘behind the scenes’ processes that has a significant impact on scalability, customer experience, and a merchant's bottom line. Examining the differences between dynamic routing vs. static routing is critical to building a more efficient payments infrastructure that supports hyper growth on a global scale
+
+
+
+What is dynamic routing?
+‍
+‍
+Dynamic routing differs from static routing by its ability to flexibly route payments according to changing circumstances, rather than being limited to just one path. With dynamic routing capabilities, a merchant can determine the best path for their transactions by devising rules to route transactions between local acquirers and Payment Service Providers (PSPs) via the most optimal way. This is what makes the difference between losing money on processing fees and saving on lost transactions. It’s what makes the difference between providing an average customer payment experience and an excellent one.
+
+
+Rules can be devised to achieve specific business needs and include routing by card issuing country, vendor, currency, acquirer fees, and much more.  If there's an inability to process transactions at the time of payment, dynamic routing can help avoid frustrating customers by setting alternative routes to another provider to ensure payments continues to be processed. That means exposure to costly acquirer failures can be reduced, and business can continue as usual.
+
+
+
+
+
+As a hyper-growth merchant, you understand the complexities, risks, and costs associated with payments. You’ve got dozens of providers located around the world and increasing transaction volumes. Acquirer failures and downtimes are on the rise, and you're dealing with fees which vary significantly between providers.
+To continue growing at hyper-speed in today's complex payments ecosystem, you need to find a way to drive ongoing improvements to your core payment processes. This requires moving beyond static routing capabilities which provide only fixed connections between acquirers and Payment Service Providers (PSPs). Efficiently facilitating transactions demands more flexibility, control and the ability to optimize payments using an intelligent processing software that enables dynamic routing.
+‍
+With dynamic routing, your payment operations will become more scalable and adaptable allowing you to grow more quickly. You’ll have the opportunity to build redundancies into your payment flows to avoid downtimes and acquirer failures so that you can minimize lost sales. You’ll also be able to improve your overall approval rates helping to create a better customer experience and reduce payment processing costs to preserve healthy profit margins by setting rules that dictate routing via the lowest cost provider.
+‍
+Optimizing your payment flows is key to achieving sustainable hyper-growth. With ZOOZ's smart payment switch, you can optimize your payments with dynamic transaction routing capabilities to save money, improve customer experiences, and take advantage of future growth opportunities.
+‍

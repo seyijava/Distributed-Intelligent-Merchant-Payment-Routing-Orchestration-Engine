@@ -1,0 +1,35 @@
+serverConfig:
+  port: "5090"
+  host: "127.0.0.1"
+
+
+
+kafkaConfig:
+  brokerUrl: "192.168.99.1:9092"
+
+
+kafkaSubConfig:
+  topic: "MerchantPaymentTopic"
+  group: "PaymentMerchantGrp"
+
+kafkaPubConfig:
+  retry: "2"
+
+routingRuleConfig:
+  routingRuleType: "DroolBusinessRule"
+
+
+SERVER_HOST:
+SERVER_PORT:
+KAFKA_BROKERS:
+KAFKASUB_GROUP:
+KAFKASUB_TOPIC:
+KAFKAPUB_RETRY:
+ROUTINGRULE_TYPE:
+
+
+
+
+
+
+

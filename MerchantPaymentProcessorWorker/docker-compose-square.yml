@@ -1,0 +1,74 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: my_net
+services:
+  seed:
+    container_name: akka-sample-cluster-docker-compose-scala_seed_1
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1900:1900'
+    environment:
+      CLUSTER_PORT: 1500
+      CLUSTER_IP: seed
+      SEED_PORT_1900_TCP_ADDR: seed
+      CLUSTER_NAME: "SQUARECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "SQUARE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "SquareChannelTopic"
+      kAFKA_TOPIC_GROUPID: "SquareGrp"
+      kAFKA_GROUP_INSTANCEID: "SquareGrp_1"
+  node1:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1901:1901'
+    environment:
+      CLUSTER_PORT: 1501
+      CLUSTER_IP: node1
+      SEED_PORT_1900_TCP_ADDR: seed
+      CLUSTER_NAME: "SQUARECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "SQUARE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "SquareChannelTopic"
+      kAFKA_TOPIC_GROUPID: "SquareGrp"
+      kAFKA_GROUP_INSTANCEID: "SquareGrp_2"
+  node2:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1902:1902'
+    environment:
+      CLUSTER_PORT: 1902
+      CLUSTER_IP: node2
+      SEED_PORT_1900_TCP_ADDR: seed
+      CLUSTER_NAME: "SQUARECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "SQUARE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "SquareChannelTopic"
+      kAFKA_TOPIC_GROUPID: "SquareGrp"
+      kAFKA_GROUP_INSTANCEID: "SquareGrp_3"
+

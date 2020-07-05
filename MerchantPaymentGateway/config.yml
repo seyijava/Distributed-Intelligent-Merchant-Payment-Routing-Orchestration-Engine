@@ -1,0 +1,30 @@
+serverConfig:
+  port: "9090"
+  host: "127.0.0.1"
+  goroutinePoolSize: "200"
+
+kafkaConfig:
+  brokerUrl: "192.168.99.1:9092"
+  topic: "MerchantPaymentTopic"
+  retry: "2"
+
+
+
+MONGO_CONNECTIONURL:
+MONGO_DB:
+MONGO_COLLECTION:
+MONGO_USERNAME:
+MONGO_PASSWORD:
+SERVER_HOST:
+SERVER_PORT:
+SERVER_GOROUTINEPOOLSIZE:
+KAFKA_BROKERS:
+KAFKA_TOPIC:
+KAFKA_RETRY:
+
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: my_net
+services:
+  seed:
+    container_name: akka-sample-cluster-docker-compose-scala_seed_1
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1600:1600'
+    environment:
+      CLUSTER_PORT: 1600
+      CLUSTER_IP: seed
+      SEED_IP: seed
+      CLUSTER_NAME: "PAYPALCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "PAYPAL"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "PayPalChannelTopic"
+      kAFKA_TOPIC_GROUPID: "PayPalGrp"
+      kAFKA_GROUP_INSTANCEID: "PayPalGrp_1"
+  node1:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1601:1601'
+    environment:
+      CLUSTER_PORT: 1601
+      CLUSTER_IP: node1
+      SEED_IP: seed
+      CLUSTER_NAME: "PAYPALCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "PAYPAL"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "PayPalChannelTopic"
+      kAFKA_TOPIC_GROUPID: "PayPalGrp"
+      kAFKA_GROUP_INSTANCEID: "PayPalGrp_2"
+  node2:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1602:1602'
+    environment:
+      CLUSTER_PORT: 1602
+      CLUSTER_IP: node2
+      SEED_IP: seed
+      CLUSTER_NAME: "PAYPALCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "PAYPAL"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "PayPalChannelTopic"
+      kAFKA_TOPIC_GROUPID: "PayPalGrp"
+      kAFKA_GROUP_INSTANCEID: "PayPalGrp_3"
+  

@@ -1,0 +1,19 @@
+version: "3.2"
+
+networks:
+  default:
+    external:
+      name: my_net
+services:
+
+  routingEngine:
+    image: intelligentpaymentrouting/paymentrouting-engine:latest
+    ports:
+      - 9070:9070
+    environment:
+      SERVER_HOST:  "0.0.0.0"
+      SERVER_PORT:  "9070"
+      KAFKA_BROKERS: "192.168.99.1:9092"
+      KAFKASUB_TOPIC: "MerchantPaymentTopic"
+      KAFKASUB_GROUP: "PaymentMerchantGrp"
+      KAFKAPUB_RETRY:  "2"

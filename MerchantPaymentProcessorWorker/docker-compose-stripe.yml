@@ -1,0 +1,77 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: my_net
+services:
+  stripeseed:
+    container_name: akka-sample-cluster-docker-compose-scala_seed_stripe
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1700:1700'
+    environment:
+      CLUSTER_PORT: 1700
+      CLUSTER_IP: stripeseed
+      SEED_IP: stripeseed
+      SEED_PORT: 1700
+      CLUSTER_NAME: "STRIPECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "STRIPE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "StripeChannelTopic"
+      kAFKA_TOPIC_GROUPID: "StripeGrp"
+      kAFKA_GROUP_INSTANCEID: "StripeGrp_1"
+  nodestripe1:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1701:1701'
+    environment:
+      CLUSTER_PORT: 1701
+      CLUSTER_IP: nodestripe1
+      SEED_IP: stripeseed
+      SEED_PORT: 1700
+      CLUSTER_NAME: "STRIPECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "STRIPE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "StripeChannelTopic"
+      kAFKA_TOPIC_GROUPID: "StripeGrp"
+      kAFKA_GROUP_INSTANCEID: "StripeGrp_2"
+  nodestripe2:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1702:1702'
+    environment:
+      CLUSTER_PORT: 1702
+      CLUSTER_IP: nodestripe2
+      SEED_IP: stripeseed
+      SEED_PORT: 1700
+      CLUSTER_NAME: "STRIPECluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "STRIPE"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "StripeChannelTopic"
+      kAFKA_TOPIC_GROUPID: "StripeGrp"
+      kAFKA_GROUP_INSTANCEID: "StripeGrp_3"
+ 

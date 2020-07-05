@@ -1,0 +1,77 @@
+version: '2'
+networks:
+  default:
+    external:
+      name: my_net
+services:
+  adyenseed:
+    container_name: akka-sample-cluster-docker-compose-scala_seed_adyen
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1800:1800'
+    environment:
+      CLUSTER_PORT: 1800
+      CLUSTER_IP: adyenseed
+      SEED_IP: adyenseed
+      SEED_PORT: 1800
+      CLUSTER_NAME: "ADYENCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "ADYEN"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "AdyenChannelTopic"
+      kAFKA_TOPIC_GROUPID: "AdyenGrp"
+      kAFKA_GROUP_INSTANCEID: "AdyenGrp_1"
+  adyennode1:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1801:1801'
+    environment:
+      CLUSTER_PORT: 1801
+      CLUSTER_IP: adyennode1
+      SEED_IP: adyenseed
+      SEED_PORT: 1800
+      CLUSTER_NAME: "ADYENCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "ADYEN"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "AdyenChannelTopic"
+      kAFKA_TOPIC_GROUPID: "AdyenGrp"
+      kAFKA_GROUP_INSTANCEID: "AdyenGrp_2"
+  adyennode2:
+    image: intelligentpaymentrouting/payment-processor-worker:latest
+    ports:
+      - '1802:1802'
+    environment:
+      CLUSTER_PORT: 1802
+      CLUSTER_IP: adyennode2
+      SEED_IP: adyenseed
+      SEED_PORT: 1800
+      CLUSTER_NAME: "ADYENCluster"
+      NO_OF_WORKERS: 10
+      SERVICE_PROVIDER_NAME: "ADYEN"
+      PSP_CONFIG_SERVICEURL: ""
+      PSP_CONFIG_USERNAME: "adminuser"
+      PSP_CONFIG_PASSWORD: "password"
+      PSP_CONFIG_MERCHANTACCOUNT: ""
+      PSP_CONFIG_MERCHANTID: ""
+      PSP_CONFIG_PUBLICKEY: ""
+      PSP_CONFIG_RPIVATEKEY: ""
+      KAFKA_BROKER_URL: "192.168.56.1:9092"
+      kAFKA_OUTBOUNDPAYMENT_TOPIC: "AdyenChannelTopic"
+      kAFKA_TOPIC_GROUPID: "AdyenGrp"
+      kAFKA_GROUP_INSTANCEID: "AdyenGrp_3"
+
